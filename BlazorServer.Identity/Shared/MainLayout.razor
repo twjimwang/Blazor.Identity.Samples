@@ -1,21 +1,24 @@
 ﻿@inherits LayoutComponentBase
-
 <PageTitle>BlazorServer.Identity</PageTitle>
+<AuthorizeView>
+    <Authorized>
+        <div class="page">
+            <div class="sidebar">
+                <NavMenu/>
+            </div>
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+            <main>
+                <div class="top-row px-4">
+                    歡迎! @context.User.Identity.Name
+                </div>
 
-    <main>
-        <div class="top-row px-4">
-            <AuthorizeView>
-                歡迎! @context.User.Identity.Name
-            </AuthorizeView>
+                <article class="content px-4">
+                    @Body
+                </article>
+            </main>
         </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+    </Authorized>
+    <NotAuthorized>
+        <LoginRedirect/>
+    </NotAuthorized>
+</AuthorizeView>
